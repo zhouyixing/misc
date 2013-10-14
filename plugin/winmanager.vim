@@ -271,7 +271,7 @@ function! <SID>StartWindowsManager()
 		let cen = 1
 		" for now assume that the explorer windows always stay on the left.
 		" TODO: make this optional later
-		wincmd L
+		wincmd H
 		" set up the correct width
 		exe g:winManagerWidth.'wincmd |'
 	end
@@ -1314,7 +1314,3 @@ endfunction
 let &cpo = s:cpo_save
 unlet s:cpo_save
 " vim:ts=4:noet:sw=4
-"set auto open Winmanager
-"if g:AutoOpenWinManager
-"    autocmd VimEnter * nested call s:StartWindowsManager()|1wincmd w 
-"endif

@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/zhouyixing/Desktop'
+let g:netrw_dirhist_2='/home/zhouyixing/tftpboot/Test/fb'
+let g:netrw_dirhist_3='/home/zhouyixing/bin/sign'
+let g:netrw_dirhist_4='/home/zhouyixing/Workspace/directfb/lib/pkgconfig'
+let g:netrw_dirhist_5='/home/zhouyixing/Workspace/g870/g870_boot/build'
+let g:netrw_dirhist_6='/home/zhouyixing/Workspace/Uniform/pkernel/drivers/usb/storage'
+let g:netrw_dirhist_7='/home/zhouyixing/.vim'
