@@ -65,29 +65,6 @@ autocmd BufWrite *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":!ctags -R --c++-kind
 " SHORTCUT SETTINGS: {{{1
 " Set mapleader
 let mapleader=","
-" Space to command mode.
-nnoremap <space> :cs find f 
-vnoremap <space> :cs find f 
-" Switching between buffers.
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-" inoremap <C-h> <Esc><C-W>h
-" inoremap <C-j> <Esc><C-W>j
-" inoremap <C-k> <Esc><C-W>k
-" inoremap <C-l> <Esc><C-W>l
-" nnoremap <silent> <C-j> :tp<CR>
-" nnoremap <silent> <C-k> :ts<CR>
-" nnoremap <silent> <C-l> :tn<CR>
-" :inoremap ( ()<ESC>i
-" :inoremap ) <c-r>=ClosePair(')')<CR>
-" :inoremap { {<CR>}<ESC>O
-" :inoremap } <c-r>=ClosePair('}')<CR>
-" :inoremap [ []<ESC>i
-" :inoremap ] <c-r>=ClosePair(']')<CR>
-" :inoremap " ""<ESC>i
-" :inoremap ' ''<ESC>i
 
 function ClosePair(char)  
     if getline('.')[col('.') - 1] == a:char  
@@ -170,6 +147,33 @@ nmap <tab> 		V>
 nmap <s-tab> 	V<
 vmap <tab> > 	gv
 vmap <s-tab> 	<gv
+" Space to command mode.
+nnoremap <space> :cs find f 
+vnoremap <space> :cs find f 
+" Switching between buffers.
+" nnoremap <C-h> <C-W>h
+" nnoremap <C-j> <C-W>j
+" nnoremap <C-k> <C-W>k
+" nnoremap <C-l> <C-W>l
+" inoremap <C-h> <Esc><C-W>h
+" inoremap <C-j> <Esc><C-W>j
+" inoremap <C-k> <Esc><C-W>k
+" inoremap <C-l> <Esc><C-W>l
+nnoremap <silent>	<C-j>		:tp<CR>
+nnoremap <silent>	<C-k>		:ts<CR>
+nnoremap <silent>	<C-l>		:tn<CR>
+inoremap <silent>	<C-j>		<Esc>:tp<CR>
+inoremap <silent>	<C-k>		<Esc>:tag <C-R>=expand("<cword>")<cr><cr>
+" inoremap <silent> <C-k> <Esc>:ts<CR>
+inoremap <silent>	<C-l> 		<Esc>:tn<CR>
+" :inoremap ( ()<ESC>i
+" :inoremap ) <c-r>=ClosePair(')')<CR>
+" :inoremap { {<CR>}<ESC>O
+" :inoremap } <c-r>=ClosePair('}')<CR>
+" :inoremap [ []<ESC>i
+" :inoremap ] <c-r>=ClosePair(']')<CR>
+" :inoremap " ""<ESC>i
+" :inoremap ' ''<ESC>i
 vnoremap <C-c> "+y
 vnoremap <C-v> "+y
 nmap <leader>b :!/bin/sh ./setup<cr><cr>
