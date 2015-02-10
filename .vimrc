@@ -60,7 +60,7 @@ autocmd BufReadPost *
 " autocmd bufreadpost *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":Tlist"
 autocmd BufRead *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":Tlist"
 " autocmd BufWrite *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":!ctags -R *"
-autocmd BufWrite *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+autocmd BufWrite *.[ch],*.cpp,*.sh,*.java,*.php,*.py exec ":!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q --exclude=.git &"
 " autocmd BufWritePost *.cpp,*.c,*.h :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q
 " SHORTCUT SETTINGS: {{{1
 " Set mapleader
@@ -143,10 +143,11 @@ function! RunShell(Msg, Shell)
 	call system(a:Shell)
 	echon 'done'
 endfunction
-nmap <tab> 		V>
-nmap <s-tab> 	V<
-vmap <tab> > 	gv
-vmap <s-tab> 	<gv
+
+nmap 		<tab> 						V>
+nmap 		<s-tab> 					V<
+vmap 		<tab> > 					gv
+vmap 		<s-tab> 					<gv
 " Space to command mode.
 nnoremap <space> :cs find f 
 vnoremap <space> :cs find f 
@@ -159,13 +160,13 @@ vnoremap <space> :cs find f
 " inoremap <C-j> <Esc><C-W>j
 " inoremap <C-k> <Esc><C-W>k
 " inoremap <C-l> <Esc><C-W>l
-nnoremap <silent>	<C-j>		:tp<CR>
-nnoremap <silent>	<C-k>		:ts<CR>
-nnoremap <silent>	<C-l>		:tn<CR>
-inoremap <silent>	<C-j>		<Esc>:tp<CR>
-inoremap <silent>	<C-k>		<Esc>:tag <C-R>=expand("<cword>")<cr><cr>
-" inoremap <silent> <C-k> <Esc>:ts<CR>
-inoremap <silent>	<C-l> 		<Esc>:tn<CR>
+nnoremap	<silent> <C-j>				:tp<CR>
+nnoremap	<silent> <C-k>				:ts<CR>
+nnoremap	<silent> <C-l>				:tn<CR>
+inoremap	<silent> <C-j>				<Esc>:tp<CR>
+inoremap	<silent> <C-k>				<Esc>:tag <C-R>=expand("<cword>")<cr><cr>
+" inoremap	<silent> <C-k>				<Esc>:ts<CR>
+inoremap	<silent> <C-l>				<Esc>:tn<CR>
 " :inoremap ( ()<ESC>i
 " :inoremap ) <c-r>=ClosePair(')')<CR>
 " :inoremap { {<CR>}<ESC>O
@@ -174,39 +175,41 @@ inoremap <silent>	<C-l> 		<Esc>:tn<CR>
 " :inoremap ] <c-r>=ClosePair(']')<CR>
 " :inoremap " ""<ESC>i
 " :inoremap ' ''<ESC>i
-vnoremap <C-c> "+y
-vnoremap <C-v> "+y
-nmap <leader>b :!/bin/sh ./setup<cr><cr>
-nmap  <F2> :TlistToggle<cr>
-" nmap  <F3> :NERDTreeToggle<cr>
-" nmap  <F4> :MRU<cr>
-nnoremap <silent> <F3> :bp<CR>
-nnoremap <silent> <F4> :bn<CR>
-" nnoremap <silent> <F5> :b#<CR>
-" nmap  <F5> <Plug>LookupFile<cr>
-" nnoremap <silent> <F5> :Rgrep<CR>
-" nmap  <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
-" nmap  <F7> :WMToggle<cr>
-nnoremap <silent> <F6> :Rgrep<CR>
-nnoremap <silent> <F6> :Rgrep<CR>
-nnoremap <silent> <C-F6> :?<C-R>=expand("<cword>")<cr><cr>
-nnoremap <silent> <F9> :bd<CR>
-nmap  <F10> :cp<cr>
-nmap  <F11> :cl<cr>
-nmap  <F12> :cn<cr>
-nnoremap <silent> <F9> :bd<CR>
-nmap <C-F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
-" nmap <F10> :call HLUDSync()<cr>
-nmap <C-F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
+vnoremap	<C-c>						"+y
+vnoremap	<C-v>						"+p
+nmap		<leader>b					:!/bin/sh ./setup<cr><cr>
+nmap		<F2>						:TlistToggle<cr>
+" nmap		<F3>						:NERDTreeToggle<cr>
+" nmap		<F4>						:MRU<cr>
+nnoremap	<silent> <F3>				:bp<CR>
+nnoremap	<silent> <F4>				:bn<CR>
+" nnoremap	<silent> <F5>				:b#<CR>
+" nmap		<F5> 						<Plug>LookupFile<cr>
+" nnoremap	<silent> <F5>				:Rgrep<CR>
+" nmap		<F6>						:vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
+" nmap		<F7>						:WMToggle<cr>
+inoremap	<silent> <F6>				<Esc>:Rgrep<CR>
+nnoremap	<silent> <F6> 				:Rgrep<CR>
+nnoremap	<silent> <C-F6>				:?<C-R>=expand("<cword>")<cr><cr>
+nnoremap	<silent> <F9> 				:bd<CR>
+nmap  		<F10> 						:cp<cr>
+nmap  		<F11> 						:cl<cr>
+nmap		<F12>						:cn<cr>
+nnoremap	<silent> <F9>				:bd<CR>
+nmap 		<leader>ss					:cs find s <C-R>=expand("<cword>")<cr><cr>
+nmap		<leader>sg					:cs find g <C-R>=expand("<cword>")<cr><cr>
+nmap		<leader>sc					:cs find c <C-R>=expand("<cword>")<cr><cr>
+nmap		<leader>st					:cs find t <C-R>=expand("<cword>")<cr><cr>
+nmap		<leader>se					:cs find e <C-R>=expand("<cword>")<cr><cr>
+nmap		<leader>sf					:cs find f <C-R>=expand("<cfile>")<cr><cr>
+nmap		<leader>si					:cs find i <C-R>=expand("<cfile>")<cr><cr>
+nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
+nmap 		<leader>cs					:w<cr>
+inoremap	<leader>cs 					<Esc>:w<cr>i
+vmap 		<leader>cs 					<Esc><Esc>:w<cr>
+nmap 		<leader>cw					:wq<cr>
+inoremap	<leader>cw 					<Esc>:wq<cr>i
+vmap 		<leader>cw 					<Esc><Esc>:wq<cr>
+
+nmap <C-F10> :call RunShell("Generate tags", "ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q --exclude=.git &")<cr>
 nmap <C-F12> :call RunShell("Generate cscope", "cscope -Rb")<cr>:cs add cscope.out<cr>
-nmap <leader>sa :cs add cscope.out<cr>
-nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>zz <C-w>o
-nmap <leader>gs :GetScripts<cr>
