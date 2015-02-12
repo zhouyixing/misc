@@ -98,9 +98,9 @@ let g:NERDTreeQuitOnOpen=1
 
 "winManager  文件浏览  
 let g:winManagerWidth=20
-let g:winManagerWindowLayout='FileExplorer'  
-" let g:winManagerWindowLayout='FileExplorer|BufExplorer'  
-nmap <silent> wm :WMToggle<cr>  
+" let g:winManagerWindowLayout='FileExplorer'  
+let g:winManagerWindowLayout='FileExplorer|BufExplorer'  
+nmap <silent>wm :WMToggle<cr>
 let g:AutoOpenWinManager=1
 
 " cscope.vim
@@ -178,6 +178,8 @@ inoremap	<silent> <C-l>				<Esc>:tn<CR>
 vnoremap	<C-c>						"+y
 vnoremap	<C-v>						"+p
 nmap		<leader>b					:!/bin/sh ./setup<cr><cr>
+nnoremap	<leader>f					:/<C-R>=expand("<cword>")<cr><cr>
+nnoremap	<leader>bf					:?<C-R>=expand("<cword>")<cr><cr>
 nmap		<F2>						:TlistToggle<cr>
 " nmap		<F3>						:NERDTreeToggle<cr>
 " nmap		<F4>						:MRU<cr>
@@ -190,7 +192,6 @@ nnoremap	<silent> <F4>				:bn<CR>
 " nmap		<F7>						:WMToggle<cr>
 inoremap	<silent> <F6>				<Esc>:Rgrep<CR>
 nnoremap	<silent> <F6> 				:Rgrep<CR>
-nnoremap	<silent> <C-F6>				:?<C-R>=expand("<cword>")<cr><cr>
 nnoremap	<silent> <F9> 				:bd<CR>
 nmap  		<F10> 						:cp<cr>
 nmap  		<F11> 						:cl<cr>
