@@ -174,13 +174,13 @@ autocmd BufReadPost *
 " autocmd	bufreadpost					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
 autocmd		BufRead						*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
 " autocmd	BufWrite					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec g:vGenCtagsCmd
-autocmd		BufWrite					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec g:vGenCtagsCmd
+autocmd		BufWrite					*.[ch],*.cpp,*.java,*.php,*.py				exec g:vGenCtagsCmd
 " autocmd	BufWritePost *.cpp,*.c,*.h					exec g:vGenCtagsCmd
 
 nmap 		<tab> 						V>
 nmap 		<s-tab> 					V<
-vmap 		<tab> > 					gv
-vmap 		<s-tab> 					<gv
+vmap 		<tab> 						>gv<ESC><ESC>
+vmap 		<s-tab> 					<gv<ESC><ESC>
 " Space to command mode.
 nnoremap	<space>						:cs find f 
 vnoremap	<space>						:cs find f 
@@ -232,7 +232,7 @@ nnoremap	<silent> <F4>				:bn<CR>
 " nmap		<F7>						:WMToggle<cr>
 inoremap	<silent> <F6>				<Esc>:Rgrep<CR>
 nnoremap	<silent> <F6> 				:Rgrep<CR>
-nnoremap	<silent> <F9> 				:bd<CR>
+" nnoremap	<silent> <F9> 				:bd<CR>
 nmap  		<F9> 						:call GenCtags()<cr>
 nmap  		<F10> 						:cp<cr>
 nmap  		<F11> 						:cl<cr>
