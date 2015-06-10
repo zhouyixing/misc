@@ -30,7 +30,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set mouse=a
+set mouse=
 set number
 set pumheight=10
 set ruler
@@ -162,6 +162,14 @@ endfunction
 function! My_ChangeToLastPath()
   execute "cd ".g:last_work_path
 endfunction
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
 
 " AUTO COMMANDS: {{{1
 " auto expand tab to blanks
