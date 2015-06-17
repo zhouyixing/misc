@@ -41,7 +41,7 @@ set smartindent
 set smartcase
 set tabstop=4
 set termencoding=utf-8,gb18030
-set textwidth=80
+set textwidth=120
 set whichwrap=h,l
 set wildignore=*.bak,*.o,*.e,*~
 set wildmenu
@@ -137,7 +137,7 @@ function! GenCtags()
 	echon 'done'
 endfunction
 
-let g:GenCscopeCmd='cscope -Rb &'
+let g:GenCscopeCmd='cscope -Rb'
 function! GenCscope()
 	echo 'Generate cscope.out...'
 	call system(g:GenCscopeCmd)
@@ -180,9 +180,9 @@ autocmd BufReadPost *
     \     exe "normal g'\"" |
 	\ endif
 " autocmd	bufreadpost					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
-autocmd		BufRead						*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
+" autocmd		BufRead						*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
 " autocmd	BufWrite					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec g:vGenCtagsCmd
-autocmd		BufWrite					*.[ch],*.cpp,*.java,*.php,*.py				exec g:vGenCtagsCmd
+" autocmd		BufWrite					*.[ch],*.cpp,*.java,*.php,*.py				exec g:vGenCtagsCmd
 " autocmd	BufWritePost *.cpp,*.c,*.h					exec g:vGenCtagsCmd
 
 nmap 		<tab> 						V>
@@ -204,6 +204,7 @@ vnoremap	<space>						:cs find f
 nmap		<silent> ls 				:!ls<cr>
 nmap		<silent> wm 				:WMToggle<cr>
 nnoremap	<silent> mw					:bd<CR>
+nnoremap	<silent> qq					:qall<CR>
 nnoremap	<silent> <C-j>				:tp<CR>
 nnoremap	<silent> <C-k>				:ts<CR>
 nnoremap	<silent> <C-l>				:tn<CR>
@@ -253,8 +254,8 @@ nmap		<leader>se					:cs find e <C-R>=expand("<cword>")<cr><cr>
 nmap		<leader>sf					:cs find f <C-R>=expand("<cfile>")<cr><cr>
 nmap		<leader>si					:cs find i <C-R>=expand("<cfile>")<cr><cr>
 nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
-nmap		<leader>sc					:call GenCscopeCmd()<cr>:cs add cscope.out<cr>
-vmap		<leader>sc					:call GenCscopeCmd()<cr>:cs add cscope.out<cr>
+nmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
+vmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
 nmap 		<leader>cs					:w<cr>
 inoremap	<leader>cs 					<Esc>:w<cr>i
 vmap 		<leader>cs 					<Esc><Esc>:w<cr>
@@ -263,4 +264,4 @@ vmap 		<leader>cs 					<Esc><Esc>:w<cr>
 " vmap 		<leader>cw 					<Esc><Esc>:wq<cr>
 
 nmap		<C-F10>						:call GenCtags()<cr>
-nmap		<C-F12>						:call GenCscopeCmd()<cr>:cs add cscope.out<cr>
+nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
