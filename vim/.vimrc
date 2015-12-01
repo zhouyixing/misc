@@ -71,7 +71,7 @@ let g:Tlist_Auto_Update=1
 let g:Tlist_Process_File_Always=1
 let g:Tlist_Exit_OnlyWindow=1
 let g:Tlist_Show_One_File=1
-let g:Tlist_WinWidth=25
+let g:Tlist_WinWidth=48
 let g:Tlist_Enable_Fold_Column=0
 let g:Tlist_Auto_Highlight_Tag=1
 
@@ -239,13 +239,19 @@ nnoremap	<silent> <F4>				:bn<CR>
 " nnoremap	<silent> <F5>				:Rgrep<CR>
 " nmap		<F6>						:vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
 " nmap		<F7>						:WMToggle<cr>
-inoremap	<silent> <F6>				<Esc>:Rgrep<CR>
-nnoremap	<silent> <F6> 				:Rgrep<CR>
+inoremap	<silent> <F5>				<Esc>:Rgrep<CR>
+nnoremap	<silent> <F5> 				:Rgrep<CR>
 " nnoremap	<silent> <F9> 				:bd<CR>
-nmap  		<F9> 						:call GenCtags()<cr>
-nmap  		<F10> 						:cp<cr>
-nmap  		<F11> 						:cl<cr>
-nmap		<F12>						:cn<cr>
+nmap        <F6>                        :w<cr>
+inoremap    <F6>                        <Esc>:w<cr>
+vnoremap    <F6>                        <Esc>:w<cr>
+nmap        <C-F6>                      :wall<cr>
+inoremap    <C-F6>                      <Esc>:wall<cr>
+vnoremap    <C-F6>                      <Esc>:wall<cr>
+nmap  		<F7> 						:cp<cr>
+nmap		<F8>						:cn<cr>
+nmap  		<F9> 						:cl<cr>
+" nmap  	<F9> 						:call GenCtags()<cr>
 nmap 		<leader>ss					:cs find s <C-R>=expand("<cword>")<cr><cr>
 nmap		<leader>sg					:cs find g <C-R>=expand("<cword>")<cr><cr>
 nmap		<leader>sc					:cs find c <C-R>=expand("<cword>")<cr><cr>
@@ -254,11 +260,15 @@ nmap		<leader>se					:cs find e <C-R>=expand("<cword>")<cr><cr>
 nmap		<leader>sf					:cs find f <C-R>=expand("<cfile>")<cr><cr>
 nmap		<leader>si					:cs find i <C-R>=expand("<cfile>")<cr><cr>
 nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
-nmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
-vmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
-nmap 		<leader>cs					:w<cr>
-inoremap	<leader>cs 					<Esc>:w<cr>i
-vmap 		<leader>cs 					<Esc><Esc>:w<cr>
+" nmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
+" vmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
+" nmap		<leader>cs					:call GenCscope()<cr>:cs add cscope.out<cr>
+" vmap		<leader>cs					:call GenCscope()<cr>:cs add cscope.out<cr>
+nmap		<leader>cs					:cs add cscope.out<cr>
+vmap		<leader>cs					:cs add cscope.out<cr>
+" nmap 		<leader>cs					:w<cr>
+" inoremap	<leader>cs 					<Esc>:w<cr>i
+" vmap 		<leader>cs 					<Esc><Esc>:w<cr>
 " nmap 		<leader>cw					:wq<cr>
 " inoremap	<leader>cw 					<Esc>:wq<cr>i
 " vmap 		<leader>cw 					<Esc><Esc>:wq<cr>
