@@ -215,7 +215,7 @@
 " by spaces. You can change this settings using the let command:
 "
 "       :let Grep_Default_Filelist = '*.[chS]'
-"       :let Grep_Default_Filelist = '*.c *.cpp *.asm'
+:let Grep_Default_Filelist = '*.[chsS] *.cpp *.asm'
 "
 " The 'Grep_Default_Options' is used to pass default command line options to
 " the grep/fgrep/egrep/agrep utilities. By default, this is set to an empty
@@ -515,12 +515,14 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
         let cwd = substitute(cwd, "\\", "/", "g")
     endif
     if v:version >= 700
-        let startdir = input("Start searching from directory: ", cwd, "dir")
+        " let startdir = input("Start searching from directory: ", cwd, "dir")
+        let startdir = input("Start searching from directory: ", "", "dir")
     else
         let startdir = input("Start searching from directory: ", cwd)
     endif
     if startdir == ""
-        return
+        let startdir = "./"
+        " return
     endif
 
     if filepattern == ""
@@ -576,7 +578,9 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     endif
 
     if g:Grep_Find_Use_Xargs == 1
-        let cmd = g:Grep_Find_Path . " " . startdir
+        " let cmd = g:Grep_Find_Path . " " . startdir
+        let cmd = g:Grep_Find_Path . " -L "
+		let cmd = cmd . startdir
         let cmd = cmd . " " . find_prune . " -prune -o"
         let cmd = cmd . " " . find_skip_files
         let cmd = cmd . " " . find_file_pattern
@@ -586,7 +590,9 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
         let cmd = cmd . grep_expr_option . " " . pattern
         let cmd = cmd . ' ' . g:Grep_Null_Device 
     else
-        let cmd = g:Grep_Find_Path . " " . startdir
+        " let cmd = g:Grep_Find_Path . " " . startdir
+        let cmd = g:Grep_Find_Path . " -L "
+		let cmd = cmd . startdir
         let cmd = cmd . " " . find_prune . " -prune -o"
         let cmd = cmd . " " . find_skip_files
         let cmd = cmd . " " . find_file_pattern
