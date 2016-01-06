@@ -264,8 +264,8 @@ nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
 " vmap		<leader>sc					:call GenCscope()<cr>:cs add cscope.out<cr>
 " nmap		<leader>cs					:call GenCscope()<cr>:cs add cscope.out<cr>
 " vmap		<leader>cs					:call GenCscope()<cr>:cs add cscope.out<cr>
-nmap		<leader>cs					:cs add cscope.out<cr>
-vmap		<leader>cs					:cs add cscope.out<cr>
+" nmap		<leader>cs					:cs add cscope.out<cr>
+" vmap		<leader>cs					:cs add cscope.out<cr>
 " nmap 		<leader>cs					:w<cr>
 " inoremap	<leader>cs 					<Esc>:w<cr>i
 " vmap 		<leader>cs 					<Esc><Esc>:w<cr>
@@ -273,5 +273,11 @@ vmap		<leader>cs					:cs add cscope.out<cr>
 " inoremap	<leader>cw 					<Esc>:wq<cr>i
 " vmap 		<leader>cw 					<Esc><Esc>:wq<cr>
 
-nmap		<C-F10>						:call GenCtags()<cr>
-nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
+" nmap		<C-F10>						:call GenCtags()<cr>
+" nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
+nmap        <F12>						:cs reset<cr>
+inoremap    <F12>						<Esc>:cs reset<cr>
+vnoremap    <F12>						<Esc>:cs reset<cr>
+nmap        <C-F12>						:cs reset<cr>
+inoremap    <C-F12>						<Esc>:cs reset<cr>
+vnoremap    <C-F12>						<Esc>:cs reset<cr>
