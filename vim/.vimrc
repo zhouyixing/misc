@@ -27,7 +27,7 @@ set helplang=cn
 set hidden
 set history=100
 set hlsearch
-set ignorecase
+" set ignorecase
 set incsearch
 set laststatus=2
 set mouse=
@@ -137,7 +137,7 @@ function! GenCtags()
 	echon 'done'
 endfunction
 
-let g:GenCscopeCmd='cscope -Rb'
+let g:GenCscopeCmd='cscope -bqk -i cscope.files'
 function! GenCscope()
 	echo 'Generate cscope.out...'
 	call system(g:GenCscopeCmd)
@@ -275,9 +275,9 @@ nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
 
 " nmap		<C-F10>						:call GenCtags()<cr>
 " nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
-nmap        <F12>						:cs reset<cr>
-inoremap    <F12>						<Esc>:cs reset<cr>
-vnoremap    <F12>						<Esc>:cs reset<cr>
-nmap        <C-F12>						:cs reset<cr>
-inoremap    <C-F12>						<Esc>:cs reset<cr>
-vnoremap    <C-F12>						<Esc>:cs reset<cr>
+nmap        <F12>						:cs reset<cr><cr>
+inoremap    <F12>						<Esc>:cs reset<cr><cr>
+vnoremap    <F12>						<Esc>:cs reset<cr><cr>
+nmap        <C-F12>						:call GenCscope()<cr>
+inoremap    <C-F12>						<Esc>:call GenCscope()<cr>
+vnoremap    <C-F12>						<Esc>:call GenCscope()<cr>
