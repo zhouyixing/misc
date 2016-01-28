@@ -201,7 +201,7 @@ vnoremap	<space>						:cs find f
 " inoremap <C-j> <Esc><C-W>j
 " inoremap <C-k> <Esc><C-W>k
 " inoremap <C-l> <Esc><C-W>l
-nmap		<silent> ls 				:!ls<cr>
+" nmap		<silent> ls 				:!ls<cr>
 nmap		<silent> wm 				:WMToggle<cr>
 nnoremap	<silent> mw					:bd<CR>
 nnoremap	<silent> qq					:qall<CR>
@@ -272,6 +272,10 @@ nmap		<leader>sd					:cs find d <C-R>=expand("<cword>")<cr><cr>
 " nmap 		<leader>cw					:wq<cr>
 " inoremap	<leader>cw 					<Esc>:wq<cr>i
 " vmap 		<leader>cw 					<Esc><Esc>:wq<cr>
+
+nmap 		<leader>ls					:!ls<cr>
+inoremap	<leader>ls 					<Esc>:!ls<cr>i
+vmap 		<leader>ls 					<Esc><Esc>:!ls<cr>
 
 " nmap		<C-F10>						:call GenCtags()<cr>
 " nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
