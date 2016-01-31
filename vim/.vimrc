@@ -220,8 +220,10 @@ inoremap	<silent> <C-l>				<Esc>:tn<CR>
 " :inoremap ]							<c-r>=ClosePair(']')<CR>
 " :inoremap "							""<ESC>i
 " :inoremap '							''<ESC>i
-vnoremap	<C-c>						"+y
-vnoremap	<C-v>						"+p
+vnoremap	<C-y>						"+y
+inoremap	<C-p>						<Esc>"+p
+vnoremap	<C-p>						<Esc>"+p
+nmap		<C-p>						"+p
 nmap		<leader>b					:!/bin/sh ./setup<cr><cr>
 nnoremap	<leader>f					:/<C-R>=expand("<cword>")<cr><cr>
 nnoremap	<leader>bf					:?<C-R>=expand("<cword>")<cr><cr>
