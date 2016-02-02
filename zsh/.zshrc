@@ -49,16 +49,20 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export STAGING_DIR=$HOME/mbox/pulse/staging_dir
+export PREFIX_PATH=${HOME}/Self
+export PATH=${PREFIX_PATH}/bin:${PATH}
 
-export PATH=$STAGING_DIR/toolchain-arm_cortex-a8+vfpv3_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin:$PATH
-export PATH=$HOME/bin:$PATH
+if [[ -n ${PKG_CONFIG_PATH} ]]; then
+	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig:${PKG_CONFIG_PATH}
+else
+	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig
+fi
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -89,25 +93,16 @@ PROMPT=$(echo "$CYAN%n:$GREEN%/$_YELLOW>$FINISH ")
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias cp='cp -i'
-# alias mv='mv -i'
-# alias rm='rm -i'
 alias ls='ls -F --color=auto'
 alias ll='ls -al'
 alias grep='grep --color=auto'
-alias mgrep="find . -regex '.*\.c\|.*\.cpp\|.*\.h\|.*\.S\|.*\.s' | grep --color=auto"
 alias la='ls -A'
 alias h='htop'
+
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get dist-upgrade'
 alias install='sudo apt-get install'
 alias autoremove='sudo apt-get autoremove'
+
 alias shutdown='sudo shutdown -P now'
 alias reboot='sudo reboot'
-
-hash -d pulse="$HOME/mbox/pulse" 
-hash -d master="$HOME/mbox/master" 
-hash -d kernel="$HOME/mbox/pulse/build_dir/target-arm_cortex-a8+vfpv3_uClibc-0.9.33.2_eabi/linux-sunxi/linux-3.4.86"
-hash -d boot="$HOME/mbox/pulse/allwinner_package/lichee/boot"
