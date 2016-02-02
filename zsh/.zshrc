@@ -58,11 +58,18 @@ source $ZSH/oh-my-zsh.sh
 export PREFIX_PATH=${HOME}/Self
 export PATH=${PREFIX_PATH}/bin:${PATH}
 
-if [[ -n ${PKG_CONFIG_PATH} ]]; then
+if [[ -n ${PKG_CONFIG_PATH} ]] ; then
 	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig:${PKG_CONFIG_PATH}
 else
 	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig
 fi
+
+if [[ -n ${LD_LIBRARY_PATH} ]] ; then
+	export LD_LIBRARY_PATH=${PREFIX_PATH}/lib:${LD_LIBRARY_PATH}
+else
+	export LD_LIBRARY_PATH=${PREFIX_PATH}/lib
+fi
+
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
