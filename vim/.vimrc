@@ -179,11 +179,11 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \     exe "normal g'\"" |
 	\ endif
-" autocmd	bufreadpost					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
-" autocmd		BufRead						*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec ":Tlist"
-" autocmd	BufWrite					*.[ch],*.cpp,*.sh,*.java,*.php,*.py			exec g:vGenCtagsCmd
-" autocmd		BufWrite					*.[ch],*.cpp,*.java,*.php,*.py				exec g:vGenCtagsCmd
-" autocmd	BufWritePost *.cpp,*.c,*.h					exec g:vGenCtagsCmd
+" autocmd Bufreadpost	*.[ch],*.cpp,*.sh,*.java,*.php,*.py		exec ":Tlist"
+" autocmd BufRead		*.[ch],*.cpp,*.sh,*.java,*.php,*.py		exec ":Tlist"
+" autocmd BufWrite		*.[ch],*.cpp,*.sh,*.java,*.php,*.py		exec g:vGenCtagsCmd
+" autocmd BufWrite		*.[ch],*.cpp,*.java,*.php,*.py			exec g:vGenCtagsCmd
+" autocmd BufWritePost	*.cpp,*.c,*.h							exec g:vGenCtagsCmd
 
 nmap 		<tab> 						V>
 nmap 		<s-tab> 					V<
@@ -202,9 +202,9 @@ vnoremap	<space>						:cs find f
 " inoremap <C-k> <Esc><C-W>k
 " inoremap <C-l> <Esc><C-W>l
 " nmap		<silent> ls 				:!ls<cr>
-nmap		<silent> wm 				:WMToggle<cr>
-nnoremap	<silent> mw					:bd<CR>
-nnoremap	<silent> qq					:qall<CR>
+" nmap		<silent> wm 				:WMToggle<cr>
+" nnoremap	<silent> mw					:bd<CR>
+" nnoremap	<silent> qq					:qall<CR>
 nnoremap	<silent> <C-j>				:tp<CR>
 nnoremap	<silent> <C-k>				:ts<CR>
 nnoremap	<silent> <C-l>				:tn<CR>
