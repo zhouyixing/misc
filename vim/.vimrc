@@ -42,6 +42,7 @@ set smartcase
 set tabstop=4
 set termencoding=utf-8,gb18030
 set textwidth=120
+set cc=120
 set whichwrap=h,l
 set wildignore=*.bak,*.o,*.e,*~
 set wildmenu
@@ -71,7 +72,7 @@ let g:Tlist_Auto_Update=1
 let g:Tlist_Process_File_Always=1
 let g:Tlist_Exit_OnlyWindow=1
 let g:Tlist_Show_One_File=1
-let g:Tlist_WinWidth=48
+let g:Tlist_WinWidth=32
 let g:Tlist_Enable_Fold_Column=0
 let g:Tlist_Auto_Highlight_Tag=1
 
@@ -82,7 +83,7 @@ let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeQuitOnOpen=1
 
 "winManager  文件浏览  
-let g:winManagerWidth=20
+let g:winManagerWidth=16
 " let g:winManagerWindowLayout='FileExplorer'  
 let g:winManagerWindowLayout='FileExplorer|BufExplorer'  
 let g:AutoOpenWinManager=1
