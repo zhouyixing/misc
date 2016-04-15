@@ -14,7 +14,10 @@ set cindent
 set cinoptions=:0
 set cursorline
 set completeopt=longest,menuone
-set noexpandtab
+" set noexpandtab
+set expandtab
+set shiftwidth=4
+set tabstop=4
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set fileformat=unix
 set foldenable
@@ -35,11 +38,9 @@ set number
 set pumheight=10
 set ruler
 set scrolloff=5
-set shiftwidth=4
 set showcmd
 set smartindent
 set smartcase
-set tabstop=4
 set termencoding=utf-8,gb18030
 set textwidth=120
 set cc=120
