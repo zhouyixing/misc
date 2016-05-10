@@ -227,8 +227,8 @@ inoremap	<C-p>						<Esc>"+p
 vnoremap	<C-p>						<Esc>"+p
 nmap		<C-p>						"+p
 nmap		<leader>b					:!/bin/sh ./setup<cr><cr>
-nnoremap	<leader>f					:/<C-R>=expand("<cword>")<cr><cr>
-nnoremap	<leader>bf					:?<C-R>=expand("<cword>")<cr><cr>
+nnoremap	<leader>f					:/\<<C-R>=expand("<cword>")<cr>\><cr>
+nnoremap	<leader>bf					:?\<<C-R>=expand("<cword>")<cr>\><cr>
 nmap		<silent> <leader>cd			:call My_ChangeToFilePath()<cr>
 nmap		<silent> <leader>cw			:exe 'cd ' . OpenDir<cr>:pwd<cr>
 nmap		<silent> <leader>cl			:call My_ChangeToLastPath()<cr>
