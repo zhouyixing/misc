@@ -3,6 +3,7 @@ set nocompatible
 filetype plugin indent on
 syntax on
 color mycolor
+colorscheme torte
 set foldmethod=marker
 set autoindent
 set autoread
@@ -21,10 +22,6 @@ set tabstop=4
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set fileformat=unix
 set foldenable
-set guioptions-=T
-set guioptions-=m
-set guioptions-=r
-set guioptions-=l
 set helpheight=10
 set helplang=cn
 set hidden
@@ -50,8 +47,17 @@ set wildmenu
 set wildmode=list:longest,full
 " set tags=/usr/include/tags
 " set nowrap
+" }}}
 
-" SHORTCUT SETTINGS: {{{1
+" GUI SETTINGS: {{{1
+set guioptions=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=l
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+" }}}1
+
+" PLUGIN SETTINGS: {{{1
 " Set mapleader
 let mapleader=","
 
@@ -65,7 +71,6 @@ endfunction
 
 " "cd" to change to open directory.
 let OpenDir=system("pwd")
-" PLUGIN SETTINGS: {{{1
 " taglist.vim
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Open=1
@@ -172,6 +177,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+" }}}1
 
 " AUTO COMMANDS: {{{1
 " auto expand tab to blanks
@@ -186,7 +192,9 @@ autocmd BufReadPost *
 " autocmd BufWrite		*.[ch],*.cpp,*.sh,*.java,*.php,*.py		exec g:vGenCtagsCmd
 " autocmd BufWrite		*.[ch],*.cpp,*.java,*.php,*.py			exec g:vGenCtagsCmd
 " autocmd BufWritePost	*.cpp,*.c,*.h							exec g:vGenCtagsCmd
+" }}}1
 
+" SHORTCUT SETTINGS: {{{1
 nmap 		<tab> 						V>
 nmap 		<s-tab> 					V<
 vmap 		<tab> 						>gv<ESC><ESC>
@@ -283,9 +291,17 @@ vmap 		<leader>ls 					<Esc><Esc>:!ls<cr>
 
 " nmap		<C-F10>						:call GenCtags()<cr>
 " nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
+nnoremap	<leader>f					:/\<<C-R>=expand("<cword>")<cr>\><cr>
+nmap        <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+inoremap    <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+vnoremap    <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+nmap        <C-F11>						:match none<cr>
+inoremap    <C-F11>						:match none<cr>
+vnoremap    <C-F11>						:match none<cr>
 nmap        <F12>						:cs reset<cr><cr>
 inoremap    <F12>						<Esc>:cs reset<cr><cr>
 vnoremap    <F12>						<Esc>:cs reset<cr><cr>
 nmap        <C-F12>						:call GenCscope()<cr>
 inoremap    <C-F12>						<Esc>:call GenCscope()<cr>
 vnoremap    <C-F12>						<Esc>:call GenCscope()<cr>
+" }}}1
