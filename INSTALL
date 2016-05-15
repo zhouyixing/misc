@@ -10,18 +10,22 @@ INSTALL_DIR=${HOME}
 ################################################################################
 ## VIM
 ################################################################################
-[ -e ${INSTALL_DIR}/.vim ] && rm -rf ${INSTALL_DIR}/.vim
-[ -e ${INSTALL_DIR}/.vimrc ] && rm -rf ${INSTALL_DIR}/.vimrc
+[ -e ${INSTALL_DIR}/.vim ]      && rm -rf ${INSTALL_DIR}/.vim
+[ -e ${INSTALL_DIR}/.vimrc ]    && rm -rf ${INSTALL_DIR}/.vimrc
+[ -L ${INSTALL_DIR}/.vim ]      && rm -rf ${INSTALL_DIR}/.vim
+[ -L ${INSTALL_DIR}/.vimrc ]    && rm -rf ${INSTALL_DIR}/.vimrc
 
-ln -s ${MISC_DIR}/vim ${INSTALL_DIR}/.vim
-ln -s ${MISC_DIR}/vim/.vimrc ${INSTALL_DIR}/.vimrc
+ln -s ${MISC_DIR}/vim           ${INSTALL_DIR}/.vim
+ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
 
 
 ################################################################################
 ## ZSH
 ################################################################################
-[ -e ${INSTALL_DIR}/.oh-my-zsh ] && rm -rf ${INSTALL_DIR}/.oh-my-zsh
-[ -e ${INSTALL_DIR}/.zshrc ] && rm -rf ${INSTALL_DIR}/.zshrc
+[ -e ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
+[ -e ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
+[ -L ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
+[ -L ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
 
-ln -s ${MISC_DIR}/zsh/.oh-my-zsh ${INSTALL_DIR}/.oh-my-zsh
-ln -s ${MISC_DIR}/zsh/.zshrc ${INSTALL_DIR}/.zshrc
+ln -s ${MISC_DIR}/zsh/.oh-my-zsh    ${INSTALL_DIR}/.oh-my-zsh
+ln -s ${MISC_DIR}/zsh/.zshrc        ${INSTALL_DIR}/.zshrc
