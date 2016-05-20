@@ -30,7 +30,7 @@ set hlsearch
 " set ignorecase
 set incsearch
 set laststatus=2
-set mouse=
+set mouse=a
 set number
 set pumheight=10
 set ruler
@@ -51,10 +51,10 @@ set wildmode=list:longest,full
 
 " GUI SETTINGS: {{{1
 set guioptions=m
+set guioptions=r
 set guioptions-=T
-set guioptions-=r
 set guioptions-=l
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 14
 " }}}1
 
 " PLUGIN SETTINGS: {{{1
@@ -139,16 +139,16 @@ endfunction
 let g:GenCtagsCmd='ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q --exclude=.git &'
 let g:vGenCtagsCmd=':!' . g:GenCtagsCmd
 function! GenCtags()
-	echo 'Generate tags...'
+	" echo 'Generate tags...'
 	call system(g:GenCtagsCmd)
-	echon 'done'
+	" echon 'done'
 endfunction
 
-let g:GenCscopeCmd='cscope -bqk -i cscope.files'
+let g:GenCscopeCmd='cscope -bqk'
 function! GenCscope()
-	echo 'Generate cscope.out...'
+	" echo 'Generate cscope.out...'
 	call system(g:GenCscopeCmd)
-	echon 'done'
+	" echon 'done'
 endfunction
 
 "Switch to current dir  
@@ -292,16 +292,16 @@ vmap 		<leader>ls 					<Esc><Esc>:!ls<cr>
 " nmap		<C-F10>						:call GenCtags()<cr>
 " nmap		<C-F12>						:call GenCscope()<cr>:cs add cscope.out<cr>
 nnoremap	<leader>f					:/\<<C-R>=expand("<cword>")<cr>\><cr>
-nmap        <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
-inoremap    <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
-vnoremap    <F11>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
-nmap        <C-F11>						:match none<cr>
-inoremap    <C-F11>						:match none<cr>
-vnoremap    <C-F11>						:match none<cr>
-nmap        <F12>						:cs reset<cr><cr>
-inoremap    <F12>						<Esc>:cs reset<cr><cr>
-vnoremap    <F12>						<Esc>:cs reset<cr><cr>
-nmap        <C-F12>						:call GenCscope()<cr>
-inoremap    <C-F12>						<Esc>:call GenCscope()<cr>
-vnoremap    <C-F12>						<Esc>:call GenCscope()<cr>
+nmap        <F10>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+inoremap    <F10>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+vnoremap    <F10>						:match Todo /\<<C-R>=expand("<cword>")<cr>\>/<cr>
+nmap        <C-F10>						:match none<cr>
+inoremap    <C-F10>						:match none<cr>
+vnoremap    <C-F10>						:match none<cr>
+nmap        <F12>						:call GenCscope()     <cr>:cs add cscope.out<cr><cr>
+inoremap    <F12>						<Esc>:call GenCscope()<cr>:cs add cscope.out<cr><cr>
+vnoremap    <F12>						<Esc>:call GenCscope()<cr>:cs add cscope.out<cr><cr>
+nmap        <C-F12>						:call GenCscope()     <cr>:cs reset<cr><cr>
+inoremap    <C-F12>						<Esc>:call GenCscope()<cr>:cs reset<cr><cr>
+vnoremap    <C-F12>						<Esc>:call GenCscope()<cr>:cs reset<cr><cr>
 " }}}1

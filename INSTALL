@@ -18,14 +18,27 @@ INSTALL_DIR=${HOME}
 ln -s ${MISC_DIR}/vim           ${INSTALL_DIR}/.vim
 ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
 
+################################################################################
+## SH COMMON
+################################################################################
+[ -e ${INSTALL_DIR}/.sh_env ]   && rm -rf ${INSTALL_DIR}/.sh_env
+[ -L ${INSTALL_DIR}/.sh_env ]   && rm -rf ${INSTALL_DIR}/.sh_env
+ln -s ${MISC_DIR}/sh/.sh_env    ${INSTALL_DIR}/.sh_env
 
 ################################################################################
 ## ZSH
 ################################################################################
 [ -e ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
-[ -e ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
 [ -L ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
-[ -L ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
+ln -s ${MISC_DIR}/sh/.oh-my-zsh     ${INSTALL_DIR}/.oh-my-zsh
 
-ln -s ${MISC_DIR}/zsh/.oh-my-zsh    ${INSTALL_DIR}/.oh-my-zsh
-ln -s ${MISC_DIR}/zsh/.zshrc        ${INSTALL_DIR}/.zshrc
+[ -e ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
+[ -L ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
+ln -s ${MISC_DIR}/sh/.zshrc         ${INSTALL_DIR}/.zshrc
+
+################################################################################
+## BASH
+################################################################################
+[ -e ${INSTALL_DIR}/.bashrc ]   && rm -rf ${INSTALL_DIR}/.bashrc
+[ -L ${INSTALL_DIR}/.bashrc ]   && rm -rf ${INSTALL_DIR}/.bashrc
+ln -s ${MISC_DIR}/sh/.bashrc    ${INSTALL_DIR}/.bashrc

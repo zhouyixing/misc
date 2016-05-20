@@ -55,45 +55,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PREFIX_PATH=${HOME}/Self
-export PATH=${PREFIX_PATH}/bin:${PATH}
-
-if [[ -n ${PKG_CONFIG_PATH} ]] ; then
-	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig:${PKG_CONFIG_PATH}
-else
-	export PKG_CONFIG_PATH=${HOME}/Self/lib/pkgconfig
-fi
-
-if [[ -n ${C_INCLUDE_PATH} ]] ; then
-	export C_INCLUDE_PATH=${PREFIX_PATH}/include:${C_INCLUDE_PATH}
-else
-	export C_INCLUDE_PATH=${PREFIX_PATH}/include
-fi
-
-if [[ -n ${CPLUS_INCLUDE_PATH} ]] ; then
-	export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:${PREFIX_PATH}/include
-else
-	export CPLUS_INCLUDE_PATH=${PREFIX_PATH}/include
-fi
-
-if [[ -n ${LD_LIBRARY_PATH} ]] ; then
-	export LD_LIBRARY_PATH=${PREFIX_PATH}/lib:${LD_LIBRARY_PATH}
-else
-	export LD_LIBRARY_PATH=${PREFIX_PATH}/lib
-fi
-
-if [[ -n ${LIBRARY_PATH} ]] ; then
-	export LIBRARY_PATH=${PREFIX_PATH}/lib:${LIBRARY_PATH}
-else
-	export LIBRARY_PATH=${PREFIX_PATH}/lib
-fi
-
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n $SSH_CONNECTION ]] ; then
   export EDITOR='vim'
 fi
 
@@ -136,3 +102,7 @@ alias iscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 hash -d s="${HOME}/Self"
+
+# PATH_7516="${HOME}/Workspace/gionee/android"
+# hash -d 7516="${PATH_7516}"
+# hash -d p="${HOME}/Workspace/projects"
