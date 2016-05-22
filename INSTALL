@@ -3,9 +3,15 @@
 ################################################################################
 ## ENVIRONMENTs
 ################################################################################
-PWD=$(pwd)
-MISC_DIR=${0%/*}
 INSTALL_DIR=${HOME}
+# MISC_DIR=${0%/*}
+# echo "scriptPath0: "$(cd `dirname $0`; pwd)
+# echo "scriptPath1: "$(dirname $(readlink -f $0))
+# echo "scriptPath2: "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
+MISC_DIR=$(dirname $(readlink -f $0))
+
+echo "src "${MISC_DIR}
+echo "dst "${INSTALL_DIR}
 
 ################################################################################
 ## VIM
