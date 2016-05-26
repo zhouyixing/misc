@@ -106,3 +106,7 @@ hash -d s="${HOME}/Self"
 # PATH_7516="${HOME}/Workspace/gionee/android"
 # hash -d 7516="${PATH_7516}"
 # hash -d p="${HOME}/Workspace/projects"
+
+if [ -f ~/.sh_env ] ; then
+    . ~/.sh_env
+fi
