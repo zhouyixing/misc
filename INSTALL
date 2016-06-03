@@ -27,9 +27,17 @@ ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
 ################################################################################
 ## SH COMMON
 ################################################################################
-[ -e ${INSTALL_DIR}/.sh_env ]   && rm -rf ${INSTALL_DIR}/.sh_env
-[ -L ${INSTALL_DIR}/.sh_env ]   && rm -rf ${INSTALL_DIR}/.sh_env
-ln -s ${MISC_DIR}/sh/.sh_env    ${INSTALL_DIR}/.sh_env
+[ -e ${INSTALL_DIR}/.common.sh ]   && rm -rf ${INSTALL_DIR}/.common.sh
+[ -L ${INSTALL_DIR}/.common.sh ]   && rm -rf ${INSTALL_DIR}/.common.sh
+ln -s ${MISC_DIR}/sh/.common.sh    ${INSTALL_DIR}/.common.sh
+
+[ -e ${INSTALL_DIR}/.env.sh ]   && rm -rf ${INSTALL_DIR}/.env.sh
+[ -L ${INSTALL_DIR}/.env.sh ]   && rm -rf ${INSTALL_DIR}/.env.sh
+ln -s ${MISC_DIR}/sh/.env.sh    ${INSTALL_DIR}/.env.sh
+
+[ -e ${INSTALL_DIR}/.functions.sh ]   && rm -rf ${INSTALL_DIR}/.functions.sh
+[ -L ${INSTALL_DIR}/.functions.sh ]   && rm -rf ${INSTALL_DIR}/.functions.sh
+ln -s ${MISC_DIR}/sh/.functions.sh    ${INSTALL_DIR}/.functions.sh
 
 ################################################################################
 ## ZSH

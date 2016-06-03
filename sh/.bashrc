@@ -116,6 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f ~/.sh_env ] ; then
-    . ~/.sh_env
+if [ -f ~/.common.sh ] ; then
+    . ~/.common.sh
 fi

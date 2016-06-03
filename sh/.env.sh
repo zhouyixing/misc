@@ -56,7 +56,9 @@ fi
 
 export ANDROID_NDK=${HOME}/Self/android-ndk-r10e
 [ -d ${ANDROID_NDK} ] && export PATH=${ANDROID_NDK}:${PATH}
+
 # Just for android
+# execute command "prebuilts/misc/linux-x86/ccache/ccache -M 100G" for android project
 export USE_CCACHE=1
 export CCACHE_DIR=~/.ccache
 

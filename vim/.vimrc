@@ -40,7 +40,7 @@ set smartindent
 set smartcase
 set termencoding=utf-8,gb18030
 set textwidth=120
-set cc=120
+set cc=100
 set whichwrap=h,l
 set wildignore=*.bak,*.o,*.e,*~
 set wildmenu
@@ -54,7 +54,7 @@ set guioptions=m
 set guioptions=r
 set guioptions-=T
 set guioptions-=l
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 14
+set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
 " }}}1
 
 " PLUGIN SETTINGS: {{{1

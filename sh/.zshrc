@@ -107,6 +107,6 @@ hash -d s="${HOME}/Self"
 # hash -d 7516="${PATH_7516}"
 # hash -d p="${HOME}/Workspace/projects"
 
-if [ -f ~/.sh_env ] ; then
-    . ~/.sh_env
+if [ -f ~/.common.sh ] ; then
+    . ~/.common.sh
 fi
