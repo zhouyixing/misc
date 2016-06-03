@@ -1,5 +1,5 @@
-if [ -f ~/.sh_env ] ; then
-    . ~/.sh_env
+if [ -f ~/.env.sh ] ; then
+    . ~/.env.sh
 fi
 
 if [ -f ~/.functions.sh ] ; then
