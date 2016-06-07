@@ -51,22 +51,20 @@ if [ -n "${adb_version}" ] ; then
         fi
     }
 
-    local xxd_version=$(xxd -verison 2>> /dev/null)
-    if [ -n "${xxd_version}" ] ; then
-        function is64bit()
-        {
-            local PID="$1"
-            if [ "$PID" ] ; then
-                if [[ "$(adb shell cat /proc/$PID/exe | xxd -l 1 -s 4 -ps)" -eq "02" ]] ; then
-                    echo "64"
-                else
-                    echo ""
-                fi
+    # Maybe it is a bug that `xxd -version` prints its version to stderr
+    # So, we just need to care about executing `xxd -version` OK or not
+    xxd -verison 2>&1 /dev/null && function is64bit(){
+        local PID="$1"
+        if [ "$PID" ] ; then
+            if [[ "$(adb shell cat /proc/$PID/exe | xxd -l 1 -s 4 -ps)" -eq "02" ]] ; then
+                echo "64"
             else
                 echo ""
             fi
-        }
-    fi
+        else
+            echo ""
+        fi
+    }
 fi
 
 case `uname -s` in

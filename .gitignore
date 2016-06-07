@@ -1,0 +1,14 @@
+# Object files
+*.o
+*.ko
+
+# Flags
+*.flags
+
+# Maps
+*.map
+
+# vim Objects
+.netrwhist
+
+# Target
