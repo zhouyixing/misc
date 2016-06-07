@@ -5,7 +5,7 @@ function cgrep()
 
 # simplified version of ps; output in the form
 # <pid> <procname>
-local adb_version=$(adb version 2>> /dev/null)
+adb_version=$(adb version 2>> /dev/null)
 if [ -n "${adb_version}" ] ; then
     function qpid() {
         local prepend=''
@@ -53,7 +53,7 @@ if [ -n "${adb_version}" ] ; then
 
     # Maybe it is a bug that `xxd -version` prints its version to stderr
     # So, we just need to care about executing `xxd -version` OK or not
-    xxd -verison 2>&1 /dev/null && function is64bit(){
+    xxd -verison > /dev/null 2>&1 && function is64bit(){
         local PID="$1"
         if [ "$PID" ] ; then
             if [[ "$(adb shell cat /proc/$PID/exe | xxd -l 1 -s 4 -ps)" -eq "02" ]] ; then
