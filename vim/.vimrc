@@ -94,17 +94,6 @@ let g:winManagerWidth=16
 let g:winManagerWindowLayout='FileExplorer|BufExplorer'  
 let g:AutoOpenWinManager=1
 
-" cscope.vim
-if has("cscope")
-	set cscopequickfix=s-,c-,d-,i-,t-,e-
-    set csto=1
-    set cst
-    set nocsverb
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
-    set csverb
-endif
 " OmniCppComplete.vim
 let g:OmniCpp_DefaultNamespaces=["std"]
 let g:OmniCpp_MayCompleteScope=1

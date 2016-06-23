@@ -9,9 +9,83 @@ INSTALL_DIR=${HOME}
 # echo "scriptPath1: "$(dirname $(readlink -f $0))
 # echo "scriptPath2: "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
 MISC_DIR=$(dirname $(readlink -f $0))
+BASE_NAME=$(basename $(readlink -f $0))
+CUR_FILE=${MISC_DIR}/${BASE_NAME}
 
-echo "src "${MISC_DIR}
-echo "dst "${INSTALL_DIR}
+################################################################################
+## FUNCTIONS
+################################################################################
+# \033[显示方式;前景色;背景色m
+# 显示方式:	00 默认值    01 高亮    22 非粗体    04 下划线
+#           24 非下划线  05 闪烁    25 非闪烁    07 反显
+#           27 非反显
+# 前景色:   30 黑色  31 红色  32 绿色  33 黄色  34 蓝色  35 洋红  36 青色  37 白色
+# 背景色:   40 黑色  41 红色  42 绿色  43 黄色  44 蓝色  45 洋红  46 青色  47 白色
+# \033[0m       默认
+# \033[1;32;40m 绿色
+# \033[1;31;40m 红色
+TAG=MISC
+ERR()
+{
+    echo -e '\033[1;31;48m' [${TAG}:E] $@ '\033[0m'
+}
+
+WRN()
+{
+    echo -e '\033[1;33;48m' [${TAG}:W] $@ '\033[0m'
+}
+
+DBG()
+{
+    echo -e '\033[1;36;48m' [${TAG}:D] $@ '\033[0m'
+}
+
+INF()
+{
+    echo -e '\033[1;32;48m' [${TAG}:I] $@ '\033[0m'
+}
+# ERR ${CUR_FILE}:${LINENO} example error
+# WRN ${CUR_FILE}:${LINENO} example warn
+# DBG ${CUR_FILE}:${LINENO} example debug
+# INF ${CUR_FILE}:${LINENO} example info
+
+usage_exit()
+{
+    cat<<__USAGE__
+bash $0 [options]
+options:
+    -h      Display this information
+    -d      Path installed
+__USAGE__
+    exit -1
+}
+
+opts=$(getopt -o hd: --long help,destination: -- "$@")
+if [ $? -ne 0 ];then
+    echo opts failed!
+    usage 
+    exit 1
+fi
+eval set -- "$opts"
+while true 
+do
+    case "$1" in 
+    -d|--destination)
+        INSTALL_DIR=$2
+        shift 2
+        ;;
+    -h|--help)
+        usage_exit
+        shift
+        ;;
+    --)
+        break;
+        ;;
+    esac
+done
+
+INF "src "${MISC_DIR}
+INF "dst "${INSTALL_DIR}
 
 ################################################################################
 ## VIM
