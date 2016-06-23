@@ -12,6 +12,8 @@ MISC_DIR=$(dirname $(readlink -f $0))
 BASE_NAME=$(basename $(readlink -f $0))
 CUR_FILE=${MISC_DIR}/${BASE_NAME}
 
+# export DEBUG=true
+
 ################################################################################
 ## FUNCTIONS
 ################################################################################
@@ -37,7 +39,9 @@ WRN()
 
 DBG()
 {
-    echo -e '\033[1;36;48m' [${TAG}:D] $@ '\033[0m'
+    if [ "${DEBUG}" = "true" ] ; then
+        echo -e '\033[1;36;48m' [${TAG}:D] $@ '\033[0m'
+    fi
 }
 
 INF()
@@ -52,12 +56,25 @@ INF()
 usage_exit()
 {
     cat<<__USAGE__
-bash $0 [options]
+$0 [options]
 options:
     -h      Display this information
     -d      Path installed
+
+run in debug mode:
+    export DEBUG=true && $0
 __USAGE__
     exit -1
+}
+
+delete()
+{
+    for file in $@
+    do
+        DBG ${CUR_FILE}:${LINENO} delete ${file} ...
+        [ -e ${file} ] && rm -rf ${file}
+        [ -L ${file} ] && rm -rf ${file}
+    done
 }
 
 opts=$(getopt -o hd: --long help,destination: -- "$@")
@@ -90,10 +107,8 @@ INF "dst "${INSTALL_DIR}
 ################################################################################
 ## VIM
 ################################################################################
-[ -e ${INSTALL_DIR}/.vim ]      && rm -rf ${INSTALL_DIR}/.vim
-[ -e ${INSTALL_DIR}/.vimrc ]    && rm -rf ${INSTALL_DIR}/.vimrc
-[ -L ${INSTALL_DIR}/.vim ]      && rm -rf ${INSTALL_DIR}/.vim
-[ -L ${INSTALL_DIR}/.vimrc ]    && rm -rf ${INSTALL_DIR}/.vimrc
+delete ${INSTALL_DIR}/.vim          \
+       ${INSTALL_DIR}/.vimrc
 
 ln -s ${MISC_DIR}/vim           ${INSTALL_DIR}/.vim
 ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
@@ -101,32 +116,26 @@ ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
 ################################################################################
 ## SH COMMON
 ################################################################################
-[ -e ${INSTALL_DIR}/.common.sh ]   && rm -rf ${INSTALL_DIR}/.common.sh
-[ -L ${INSTALL_DIR}/.common.sh ]   && rm -rf ${INSTALL_DIR}/.common.sh
+delete ${INSTALL_DIR}/.common.sh    \
+       ${INSTALL_DIR}/.env.sh       \
+       ${INSTALL_DIR}/.functions.sh
+
 ln -s ${MISC_DIR}/sh/.common.sh    ${INSTALL_DIR}/.common.sh
-
-[ -e ${INSTALL_DIR}/.env.sh ]   && rm -rf ${INSTALL_DIR}/.env.sh
-[ -L ${INSTALL_DIR}/.env.sh ]   && rm -rf ${INSTALL_DIR}/.env.sh
 ln -s ${MISC_DIR}/sh/.env.sh    ${INSTALL_DIR}/.env.sh
-
-[ -e ${INSTALL_DIR}/.functions.sh ]   && rm -rf ${INSTALL_DIR}/.functions.sh
-[ -L ${INSTALL_DIR}/.functions.sh ]   && rm -rf ${INSTALL_DIR}/.functions.sh
 ln -s ${MISC_DIR}/sh/.functions.sh    ${INSTALL_DIR}/.functions.sh
 
 ################################################################################
 ## ZSH
 ################################################################################
-[ -e ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
-[ -L ${INSTALL_DIR}/.oh-my-zsh ]    && rm -rf ${INSTALL_DIR}/.oh-my-zsh
-ln -s ${MISC_DIR}/sh/.oh-my-zsh     ${INSTALL_DIR}/.oh-my-zsh
+delete ${INSTALL_DIR}/.oh-my-zsh    \
+       ${INSTALL_DIR}/.zshrc
 
-[ -e ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
-[ -L ${INSTALL_DIR}/.zshrc ]        && rm -rf ${INSTALL_DIR}/.zshrc
+ln -s ${MISC_DIR}/sh/.oh-my-zsh     ${INSTALL_DIR}/.oh-my-zsh
 ln -s ${MISC_DIR}/sh/.zshrc         ${INSTALL_DIR}/.zshrc
 
 ################################################################################
 ## BASH
 ################################################################################
-[ -e ${INSTALL_DIR}/.bashrc ]   && rm -rf ${INSTALL_DIR}/.bashrc
-[ -L ${INSTALL_DIR}/.bashrc ]   && rm -rf ${INSTALL_DIR}/.bashrc
+delete ${INSTALL_DIR}/.bashrc
+
 ln -s ${MISC_DIR}/sh/.bashrc    ${INSTALL_DIR}/.bashrc
