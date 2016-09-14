@@ -79,8 +79,7 @@ delete()
 
 opts=$(getopt -o hd: --long help,destination: -- "$@")
 if [ $? -ne 0 ];then
-    echo opts failed!
-    usage 
+    usage_exit
     exit 1
 fi
 eval set -- "$opts"
@@ -118,11 +117,13 @@ ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
 ################################################################################
 delete ${INSTALL_DIR}/.common.sh    \
        ${INSTALL_DIR}/.env.sh       \
+       ${INSTALL_DIR}/.alias.sh     \
        ${INSTALL_DIR}/.functions.sh
 
-ln -s ${MISC_DIR}/sh/.common.sh    ${INSTALL_DIR}/.common.sh
-ln -s ${MISC_DIR}/sh/.env.sh    ${INSTALL_DIR}/.env.sh
-ln -s ${MISC_DIR}/sh/.functions.sh    ${INSTALL_DIR}/.functions.sh
+ln -s ${MISC_DIR}/sh/.common.sh     ${INSTALL_DIR}/.common.sh
+ln -s ${MISC_DIR}/sh/.env.sh        ${INSTALL_DIR}/.env.sh
+ln -s ${MISC_DIR}/sh/.alias.sh      ${INSTALL_DIR}/.alias.sh
+ln -s ${MISC_DIR}/sh/.functions.sh  ${INSTALL_DIR}/.functions.sh
 
 ################################################################################
 ## ZSH
@@ -138,4 +139,4 @@ ln -s ${MISC_DIR}/sh/.zshrc         ${INSTALL_DIR}/.zshrc
 ################################################################################
 delete ${INSTALL_DIR}/.bashrc
 
-ln -s ${MISC_DIR}/sh/.bashrc    ${INSTALL_DIR}/.bashrc
+ln -s ${MISC_DIR}/sh/.bashrc        ${INSTALL_DIR}/.bashrc

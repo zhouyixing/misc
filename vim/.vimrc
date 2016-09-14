@@ -15,17 +15,18 @@ set cindent
 set cinoptions=:0
 set cursorline
 set completeopt=longest,menuone
-" set noexpandtab
-set expandtab
-set shiftwidth=4
 set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+" set noexpandtab
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set fileformat=unix
 set foldenable
 set helpheight=10
 set helplang=cn
 set hidden
-set history=100
+set history=10000
 set hlsearch
 " set ignorecase
 set incsearch
@@ -54,7 +55,8 @@ set guioptions=m
 set guioptions=r
 set guioptions-=T
 set guioptions-=l
-set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+" set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 12
+set guifont=DejaVu\ Sans\ \Mono\ 12
 " }}}1
 
 " PLUGIN SETTINGS: {{{1
@@ -78,7 +80,7 @@ let g:Tlist_Auto_Update=1
 let g:Tlist_Process_File_Always=1
 let g:Tlist_Exit_OnlyWindow=1
 let g:Tlist_Show_One_File=1
-let g:Tlist_WinWidth=32
+let g:Tlist_WinWidth=64
 let g:Tlist_Enable_Fold_Column=0
 let g:Tlist_Auto_Highlight_Tag=1
 

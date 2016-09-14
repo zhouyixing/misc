@@ -1,9 +1,9 @@
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
+# autoload -Uz promptinit
+# promptinit
+# prompt adam1
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -78,34 +78,7 @@ RPROMPT=$(echo "$RED%D %T$FINISH")
 # PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")  
 PROMPT=$(echo "$CYAN%n:$GREEN%/$_YELLOW>$FINISH ") 
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias ls='ls -F --color=auto'
-alias ll='ls -al'
-alias grep='grep --color=auto'
-alias la='ls -A'
-alias h='htop'
-
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get dist-upgrade'
-alias install='sudo apt-get install'
-alias autoremove='sudo apt-get autoremove'
-
-alias shutdown='sudo shutdown -P now'
-alias reboot='sudo reboot'
-
-alias iscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-alias issh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-
 hash -d s="${HOME}/Self"
-
-# PATH_7516="${HOME}/Workspace/gionee/android"
-# hash -d 7516="${PATH_7516}"
-# hash -d p="${HOME}/Workspace/projects"
 
 if [ -f ~/.common.sh ] ; then
     . ~/.common.sh
