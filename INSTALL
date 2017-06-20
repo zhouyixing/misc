@@ -1,57 +1,26 @@
-#!/bin/bash
-
 ################################################################################
 ## ENVIRONMENTs
 ################################################################################
-INSTALL_DIR=${HOME}
-# MISC_DIR=${0%/*}
+MY_SHELL=$(ps | grep $$ | awk '{print $4}')
+
+# CUR_DIR=${0%/*}
 # echo "scriptPath0: "$(cd `dirname $0`; pwd)
 # echo "scriptPath1: "$(dirname $(readlink -f $0))
 # echo "scriptPath2: "$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
-MISC_DIR=$(dirname $(readlink -f $0))
-BASE_NAME=$(basename $(readlink -f $0))
-CUR_FILE=${MISC_DIR}/${BASE_NAME}
+if [ "${MY_SHELL}" = "bash" ] ; then
+    CUR_DIR=$(cd $(dirname ${BASH_SOURCE:-$0});pwd)
+    CUR_FILE=${BASH_SOURCE:-$0}
+else
+    CUR_DIR=$(dirname $(readlink -f $0))
+    CUR_FILE=$(basename $(readlink -f $0))
+fi
+DST_DIR=${HOME}
+CUR_FILE=${CUR_DIR}/${CUR_FILE}
 
 # export DEBUG=true
+export TAG=MISC
 
-################################################################################
-## FUNCTIONS
-################################################################################
-# \033[显示方式;前景色;背景色m
-# 显示方式:	00 默认值    01 高亮    22 非粗体    04 下划线
-#           24 非下划线  05 闪烁    25 非闪烁    07 反显
-#           27 非反显
-# 前景色:   30 黑色  31 红色  32 绿色  33 黄色  34 蓝色  35 洋红  36 青色  37 白色
-# 背景色:   40 黑色  41 红色  42 绿色  43 黄色  44 蓝色  45 洋红  46 青色  47 白色
-# \033[0m       默认
-# \033[1;32;40m 绿色
-# \033[1;31;40m 红色
-TAG=MISC
-ERR()
-{
-    echo -e '\033[1;31;48m' [${TAG}:E] $@ '\033[0m'
-}
-
-WRN()
-{
-    echo -e '\033[1;33;48m' [${TAG}:W] $@ '\033[0m'
-}
-
-DBG()
-{
-    if [ "${DEBUG}" = "true" ] ; then
-        echo -e '\033[1;36;48m' [${TAG}:D] $@ '\033[0m'
-    fi
-}
-
-INF()
-{
-    echo -e '\033[1;32;48m' [${TAG}:I] $@ '\033[0m'
-}
-# ERR ${CUR_FILE}:${LINENO} example error
-# WRN ${CUR_FILE}:${LINENO} example warn
-# DBG ${CUR_FILE}:${LINENO} example debug
-# INF ${CUR_FILE}:${LINENO} example info
+source ${CUR_DIR}/tools/log.sh
 
 usage_exit()
 {
@@ -87,7 +56,7 @@ while true
 do
     case "$1" in 
     -d|--destination)
-        INSTALL_DIR=$2
+        DST_DIR=$2
         shift 2
         ;;
     -h|--help)
@@ -100,43 +69,45 @@ do
     esac
 done
 
-INF "src "${MISC_DIR}
-INF "dst "${INSTALL_DIR}
+DBG "shell "${MY_SHELL}
+
+INF "src "${CUR_DIR}
+INF "dst "${DST_DIR}
 
 ################################################################################
 ## VIM
 ################################################################################
-delete ${INSTALL_DIR}/.vim          \
-       ${INSTALL_DIR}/.vimrc
+delete ${DST_DIR}/.vim          \
+       ${DST_DIR}/.vimrc
 
-ln -s ${MISC_DIR}/vim           ${INSTALL_DIR}/.vim
-ln -s ${MISC_DIR}/vim/.vimrc    ${INSTALL_DIR}/.vimrc
+ln -s ${CUR_DIR}/vim           ${DST_DIR}/.vim
+ln -s ${CUR_DIR}/vim/.vimrc    ${DST_DIR}/.vimrc
 
 ################################################################################
 ## SH COMMON
 ################################################################################
-delete ${INSTALL_DIR}/.common.sh    \
-       ${INSTALL_DIR}/.env.sh       \
-       ${INSTALL_DIR}/.alias.sh     \
-       ${INSTALL_DIR}/.functions.sh
+delete ${DST_DIR}/.common.sh    \
+       ${DST_DIR}/.env.sh       \
+       ${DST_DIR}/.alias.sh     \
+       ${DST_DIR}/.functions.sh
 
-ln -s ${MISC_DIR}/sh/.common.sh     ${INSTALL_DIR}/.common.sh
-ln -s ${MISC_DIR}/sh/.env.sh        ${INSTALL_DIR}/.env.sh
-ln -s ${MISC_DIR}/sh/.alias.sh      ${INSTALL_DIR}/.alias.sh
-ln -s ${MISC_DIR}/sh/.functions.sh  ${INSTALL_DIR}/.functions.sh
+ln -s ${CUR_DIR}/sh/.common.sh     ${DST_DIR}/.common.sh
+ln -s ${CUR_DIR}/sh/.env.sh        ${DST_DIR}/.env.sh
+ln -s ${CUR_DIR}/sh/.alias.sh      ${DST_DIR}/.alias.sh
+ln -s ${CUR_DIR}/sh/.functions.sh  ${DST_DIR}/.functions.sh
 
 ################################################################################
 ## ZSH
 ################################################################################
-delete ${INSTALL_DIR}/.oh-my-zsh    \
-       ${INSTALL_DIR}/.zshrc
+delete ${DST_DIR}/.oh-my-zsh    \
+       ${DST_DIR}/.zshrc
 
-ln -s ${MISC_DIR}/sh/.oh-my-zsh     ${INSTALL_DIR}/.oh-my-zsh
-ln -s ${MISC_DIR}/sh/.zshrc         ${INSTALL_DIR}/.zshrc
+ln -s ${CUR_DIR}/sh/.oh-my-zsh     ${DST_DIR}/.oh-my-zsh
+ln -s ${CUR_DIR}/sh/.zshrc         ${DST_DIR}/.zshrc
 
 ################################################################################
 ## BASH
 ################################################################################
-delete ${INSTALL_DIR}/.bashrc
+delete ${DST_DIR}/.bashrc
 
-ln -s ${MISC_DIR}/sh/.bashrc        ${INSTALL_DIR}/.bashrc
+ln -s ${CUR_DIR}/sh/.bashrc        ${DST_DIR}/.bashrc

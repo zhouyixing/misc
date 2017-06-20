@@ -74,9 +74,9 @@ done
 FINISH="%{$terminfo[sgr0]%}"  
 
   
-RPROMPT=$(echo "$RED%D %T$FINISH")  
-# PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")  
-PROMPT=$(echo "$CYAN%n:$GREEN%/$_YELLOW>$FINISH ") 
+# RPROMPT=$(echo "$RED%D %T$FINISH")
+# PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")
+PROMPT=$(echo "$CYAN%n@$GREEN%/$_YELLOW>$FINISH ")
 
 hash -d s="${HOME}/Self"
 

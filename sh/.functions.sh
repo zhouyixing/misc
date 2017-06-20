@@ -145,7 +145,7 @@ case `uname -s` in
         ;;
 esac
 
-function fgrep()
+function ffgrep()
 {
     [ -r "$1" ] && cat "$1" | xargs grep -rn "$2"
 }
