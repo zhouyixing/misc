@@ -215,7 +215,7 @@
 " by spaces. You can change this settings using the let command:
 "
 "       :let Grep_Default_Filelist = '*.[chS]'
-:let Grep_Default_Filelist = '*.[chsS] *.cpp *.asm'
+:let Grep_Default_Filelist = '*.[chsS] *.cpp *.asm *.cc *.mk Makefile *.java *.aidl'
 "
 " The 'Grep_Default_Options' is used to pass default command line options to
 " the grep/fgrep/egrep/agrep utilities. By default, this is set to an empty
@@ -502,7 +502,8 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
 
     " No argument supplied. Get the identifier and file list from user
     if pattern == "" 
-        let pattern = input("Search for pattern: ", expand("<cword>"))
+        " let pattern = input("Search for pattern: ", expand("<cword>"))
+        let pattern = expand("<cword>")
         if pattern == ""
             return
         endif
@@ -514,24 +515,26 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, ...)
     if g:Grep_Cygwin_Find == 1
         let cwd = substitute(cwd, "\\", "/", "g")
     endif
-    if v:version >= 700
+    " if v:version >= 700
         " let startdir = input("Start searching from directory: ", cwd, "dir")
-        let startdir = input("Start searching from directory: ", "", "dir")
-    else
-        let startdir = input("Start searching from directory: ", cwd)
-    endif
-    if startdir == ""
-        let startdir = "./"
+        " let startdir = input("Start searching from directory: ", "", "dir")
+    " else
+        " let startdir = input("Start searching from directory: ", cwd)
+    " endif
+    " if startdir == ""
+        " let startdir = "./"
         " return
-    endif
+    " endif
+    let startdir = "./"
 
-    if filepattern == ""
-        let filepattern = input("Search in files matching pattern: ", 
-                                          \ g:Grep_Default_Filelist)
-        if filepattern == ""
-            return
-        endif
-    endif
+    " if filepattern == ""
+    "     let filepattern = input("Search in files matching pattern: ", 
+    "                                       \ g:Grep_Default_Filelist)
+    "     if filepattern == ""
+    "         return
+    "     endif
+    " endif
+    let filepattern = g:Grep_Default_Filelist
 
     let txt = filepattern . ' '
     let find_file_pattern = ''
@@ -686,7 +689,8 @@ function! s:RunGrepSpecial(cmd_name, which, action, ...)
         let pattern = a:{argcnt}
     else
         " No argument supplied. Get the identifier and file list from user
-        let pattern = input("Search for pattern: ", expand("<cword>"))
+        " let pattern = input("Search for pattern: ", expand("<cword>"))
+        let pattern = expand("<cword>")
         if pattern == ""
             return
         endif
@@ -761,7 +765,8 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
 
     " Get the identifier and file list from user
     if pattern == "" 
-        let pattern = input("Search for pattern: ", expand("<cword>"))
+        " let pattern = input("Search for pattern: ", expand("<cword>"))
+        let pattern = expand("<cword>")
         if pattern == ""
             return
         endif
@@ -769,17 +774,18 @@ function! s:RunGrep(cmd_name, grep_cmd, action, ...)
                         \ g:Grep_Shell_Quote_Char
     endif
 
-    if filenames == ""
-        if v:version >= 700
-            let filenames = input("Search in files: ", g:Grep_Default_Filelist,
-                        \ "file")
-        else
-            let filenames = input("Search in files: ", g:Grep_Default_Filelist)
-        endif
-        if filenames == ""
-            return
-        endif
-    endif
+    " if filenames == ""
+    "     if v:version >= 700
+    "         let filenames = input("Search in files: ", g:Grep_Default_Filelist,
+    "                     \ "file")
+    "     else
+    "         let filenames = input("Search in files: ", g:Grep_Default_Filelist)
+    "     endif
+    "     if filenames == ""
+    "         return
+    "     endif
+    " endif
+    let filenames = g:Grep_Default_Filelist
 
     " Add /dev/null to the list of filenames, so that grep print the
     " filename and linenumber when grepping in a single file
