@@ -43,6 +43,7 @@ if [ -d ${PREFIX_PATH} ] ; then
 fi
 
 JAVA_VERSION=$(java -version 2>&1)
+JAVA_VERSION=${JAVA_VERSION:14:3}
 if      [ "${JAVA_VERSION}" = "1.8" ] ; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 elif    [ "${JAVA_VERSION}" = "1.7" ] ; then
