@@ -38,14 +38,20 @@ if [ -d ${PREFIX_PATH} ] ; then
     else
         export LIBRARY_PATH=${PREFIX_PATH}/lib
     fi
+
+    # export PATH=${PREFIX_PATH}/aarch64-linux-android-4.9/bin:${PATH}
 fi
 
-# export JAVA_HOME=${HOME}/Softwares/java-7-openjdk-amd64
-# export JAVA_HOME=${HOME}/Softwares/jdk1.6.0_31
-# export JAVA_HOME=${HOME}/Softwares/jdk1.8.0_102
-# export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-# export JAVA_BIN=${JAVA_HOME}/jre/bin
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+JAVA_VERSION=$(java -version 2>&1)
+if      [ "${JAVA_VERSION}" = "1.8" ] ; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+elif    [ "${JAVA_VERSION}" = "1.7" ] ; then
+    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+elif    [ "${JAVA_VERSION}" = "1.6" ] ; then
+    export JAVA_HOME=${HOME}/Softwares/jdk1.6.0_31
+elif    [ -d /usr/lib/jvm/java-8-openjdk-amd64 ] ; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+fi
 if [ -d ${JAVA_HOME} ] ; then
     export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
     # export PATH=${JAVA_HOME}/bin:${PATH}
@@ -85,11 +91,11 @@ export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
 
 # Just for android
 # execute command "prebuilts/misc/linux-x86/ccache/ccache -M 100G" for android project
-export USE_CCACHE=1
-export CCACHE_DIR=~/.ccache
+# export USE_CCACHE=1
+# export CCACHE_DIR=~/.ccache
 
 # Just for android studio
 export IBUS_ENABLE_SYNC_MODE=1
 
 # Just for BEAN TEE SDK
-. ${HOME}/Self/bean/default.sh
+# . ${HOME}/Self/bean/default.sh

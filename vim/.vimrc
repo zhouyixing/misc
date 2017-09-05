@@ -81,7 +81,7 @@ let g:Tlist_Auto_Update=1
 let g:Tlist_Process_File_Always=1
 let g:Tlist_Exit_OnlyWindow=1
 let g:Tlist_Show_One_File=1
-let g:Tlist_WinWidth=48
+let g:Tlist_WinWidth=64
 let g:Tlist_Enable_Fold_Column=0
 let g:Tlist_Auto_Highlight_Tag=1
 
@@ -241,10 +241,11 @@ nnoremap    <silent> <F4>               :bn<CR>
 " nnoremap  <silent> <F5>               :b#<CR>
 " nmap      <F5>                        <Plug>LookupFile<cr>
 " nnoremap  <silent> <F5>               :Rgrep<CR>
-" nmap      <F6>                        :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
 " nmap      <F7>                        :WMToggle<cr>
 inoremap    <silent> <F5>               <Esc>:Rgrep<CR>
 nnoremap    <silent> <F5>               :Rgrep<CR>
+" inoremap    <silent> <C-F5>             :make<cr>
+" nnoremap    <silent> <C-F5>             :make<cr>
 " nnoremap  <silent> <F9>               :bd<CR>
 nmap        <F6>                        :w<cr>
 inoremap    <F6>                        <Esc>:w<cr>
